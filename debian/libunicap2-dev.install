@@ -1,0 +1,5 @@
+usr/include/unicap/
+usr/lib/*/pkgconfig/libunicap.pc
+usr/lib/*/libunicap.so
+usr/lib/*/libunicap.a
+usr/lib/*/unicap2/cpi/lib*.a

@@ -1,0 +1,51 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+# Ignore logo and tarball-in-tarball, in addition to default stuff
+DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(doc/api/html/images/logo_unicap\.gif|examples/c/xv_display/xv_display-0\.0\.7\.tar\.gz|debian/(changelog|copyright(|_hints|_newhints)))$
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+export DEB_CFLAGS_MAINT_APPEND  = -Wall
+# package maintainers to append LDFLAGS
+export DEB_LDFLAGS_MAINT_APPEND = \
+	-pthread \
+	-Wl,-z,defs \
+	-Wl,--as-needed \
+	-Wl,--no-undefined \
+	-Wl,--version-script=$(CURDIR)/debian/libunicap.ver \
+	$(empty)
+
+%:
+	dh $@
+
+override_dh_autoreconf:
+	mkdir -p m4
+	gtkdocize
+	dh_autoreconf
+	intltoolize
+
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--disable-rpath \
+		--enable-gtk-doc \
+		--enable-vid21394-visca \
+		--enable-libv4l \
+		$(empty)
+
+override_dh_makeshlibs:
+	dh_makeshlibs -X /unicap2/cpi/
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f gtk-doc.make
+	rm -f po/Makefile.in.in
+	rm -f config.log config.status
+	rm -f include/unicap_version.h
+	rm -rf m4

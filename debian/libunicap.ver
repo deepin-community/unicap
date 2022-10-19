@@ -1,0 +1,7 @@
+{
+	global:
+		unicap_*;
+		cpi_register;
+	local:
+		*;
+};

@@ -1,0 +1,240 @@
+unicap (0.9.12+repack20150328.0.git2c600ae-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/copyright: Use https protocol in Format field
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Felipe Sateler ]
+  * Change maintainer address to debian-multimedia@lists.debian.org
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Patch to remove unused, but multiply defined variable. (Closes: #957898)
+  * Add salsa-ci configuration
+  * Remove obsolete file d/source/local-options
+  * Declare that building this package does not require 'root' powers.
+  * Install locales
+  * Mark libtool files as not-installed
+  * Add udev-rules for euvccam to documentation
+  * Forward all patches to upstream
+  * Bump dh-compat to 13
+  * Bump standards version to 4.5.0
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Mon, 27 Jul 2020 15:54:36 +0200
+
+unicap (0.9.12+repack20150328.0.git2c600ae-2) unstable; urgency=medium
+
+  * Keep cpi_register() function in plugins, so they actually work
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 03 Oct 2017 17:02:47 +0200
+
+unicap (0.9.12+repack20150328.0.git2c600ae-1) unstable; urgency=medium
+
+  * New upstream version 0.9.12+repack20150328.0.git2c600ae
+
+  [ IOhannes m zmölnig ]
+  * Refresh patches
+    * Update patch to fix translation check
+    * Add patch to allow building of gtk-docs
+  * Switch build-system to dh
+  * Add libunicap2.symbols file
+    * Restrict exported symbols to unicap_* namespace
+    * Exclude CPI-libraries from dpkg-gensymbols
+  * Streamline Build-Dependencies
+  * Suggest docs from dev package (rather than from the libs)
+  * Drop superfluous Section from d/control
+  * Add d/source/local-options
+  * Update d/copyright
+  * Fix d/watch
+  * Add README.source explaining on how to get the sources
+  * Switch Vcs to pkg-multimedia (and modernized Vcs-* stanzas)
+  * Added myself to uploaders
+  * Bump dh compat to 10
+  * Bumped standards version to 4.1.1
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 03 Oct 2017 15:57:08 +0200
+
+unicap (0.9.12-2) unstable; urgency=low
+
+  * Add patch 1010 to fix implicit pointer conversions in v4l2 macros.
+    Closes: #678718. Thanks to Adam Conrad.
+  * Add patch 1011 to fix implicit function declarations in cpi/euvccam.
+    Thanks to Adam Conrad.
+  * Correct and extend copyright years for packaging.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 24 Jun 2012 14:27:13 +0200
+
+unicap (0.9.12-1) unstable; urgency=low
+
+  * New upstream release.
+    Closes: bug#610440. Thanks to IOhannes m zmoelnig.
+
+  * Acknowledge NMUs.
+    Thanks to Alessio Treglia and Adam Conrad.
+  * Simplify packaging: libucil and libunicapgtk now separate projects.
+    Really closes: bug#663022. Also closes: bug#649810.
+  * Update patches:
+    + Drop all but patches 1001 1003 1009: Obsolete.
+    + Unfuzz patches and refresh with shortening quilt options.
+    + Add patch 1005 to update list of gettext source files.
+    + Add patch 1006 to fix euvccam driver -lrt linkage.
+  * Stop shipping *.la files: No packages depend on them any longer.
+    Tighten build-depdendency on d-shlibs.
+    Really really closes: bug#633316. Thanks to Neil Williams and
+    Alessio Treglia.
+  * Stop shipping examples no longer provided upstream.
+    Closes: bug#535692. Thanks to Luca Bigliardi.
+  * Update upstream download URL in watch and rules files.
+  * Tighten and simplify CDBS usage.
+  * Use source format 3.0 (quilt), and stop including patchsys-quilt.mk.
+  * Bump standards-version to 3.9.3.
+  * Git-ignore quilt .pc dir, to ease building with git-buildpackage.
+  * Rewrite copyright file using file format 1.0.
+  * Fix extend copyright file with Files section covering patches by
+    Miriam Ruiz.
+  * Move maintenance to Debian Multimedia Maintainers.
+  * Use anonscm.debian.org for Vcs-Browser field.
+  * Drop build-dependencies for now separate projects: libavcodec-dev
+    libavformat-dev libtheora-dev libvorbis-dev libasound2-dev
+    libpng12-dev libxv-dev.
+    Closes: bug#662529. Thanks to Nobuhiro Iwamatsu.
+  * Relax to build-depend unversioned on debhelper d-shlibs
+    libgtk2.0-dev libglib2.0-dev: Required versions satisfied even in
+    oldstable.
+  * Regenerate autotools.
+    Build-depend on libtool automake1.11 autoconf.
+  * Configure with --enable-libv4l.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 23 Jun 2012 03:05:28 +0200
+
+unicap (0.9.5-1.4) unstable; urgency=low
+
+  * Non-maintainer upload to fix FTBFS (Closes: #663022):
+    - Move .la sed magic from common-install-prehook-arch:: to
+      common-install-impl:: so it happens after make install.
+
+ -- Adam Conrad <adconrad@debian.org>  Fri, 22 Jun 2012 12:59:45 -0600
+
+unicap (0.9.5-1.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix FTBFS on all architectures due to a mistake in debian/rules:
+    - Don't rely on debian/tmp because common-install-prehook-arch target
+      is called before anything serious is done (like installing files);
+      really closes: #633316
+
+ -- Alessio Treglia <alessio@debian.org>  Thu, 01 Mar 2012 01:03:47 +0100
+
+unicap (0.9.5-1.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/rules: Empty dependency libs in .la files (Closes: #633316)
+
+ -- Alessio Treglia <alessio@debian.org>  Wed, 15 Feb 2012 19:14:36 +0100
+
+unicap (0.9.5-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Point #include statements to the new location of the V4L1 headers as
+    they are no longer provided by the kernel, fix FTBFS (Closes: #621954):
+    - Add 1009_v4l1.patch
+    - Add build-dependency on libv4l-dev
+    - Regenerate debian/control
+
+ -- Alessio Treglia <alessio@debian.org>  Sat, 06 Aug 2011 10:09:07 +0200
+
+unicap (0.9.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop patch 1005 (POTFILES infile fix) solved upstream now.
+  * Update package-relations.mk: Cleanup unversioned+versioned
+    dependency mix. Improve whitespace cleanup. Rewrite and silence
+    applying dependencies.
+  * Relax build-dependency on gnulib to be unversioned (required version
+    is in oldstable).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 02 Oct 2009 17:18:31 +0200
+
+unicap (0.9.5-1) unstable; urgency=low
+
+  * New upstream release:
+    + allow arbitrary FourCCs
+    + set frame_interval correctly for frame rates != 30 FPS
+  * Add git-buildpackage configfile, enabling pristine-tar branch and
+    signed tags.
+  * Drop blog URL as source URL.
+  * Rewrite README.source.
+  * Update local CDBS snippets:
+    + Enhance package-relations.mk to support all binary package
+      relations (except -indep ones).
+    + Enhance package-relations.mk to support Enhances
+    + Extend package-relation cleanup to include debhelper 6 and 7.0.1
+    + Fix package-relations cleanup of debhelper 7
+    + Implement fail-source-not-repackaged rule in upstream-tarball.mk
+    + Update URL to draft DEP5 format in copyright-check.mk output
+  * Fix tighten versioned build-dependenc on debhelper.
+  * Override libav*-dev more generally in debian/rules d-shlibs
+    resolving.
+  * Add patch 1007 to drop ffmpeg backwards compatibility regarding
+    YUYV422/YUV422, possibly clashing with recent changes to FourCC
+    handlings. Thanks to Petr Baudis.
+  * Add patch 1008, and update patch 2001, to make unicap work with
+    gspca driver. Thanks to Petr Baudis.
+  * Rewrite copyright to use DEP5 r59 proposed machine-readable format.
+  * Bump policy compliance to standards-version 3.8.1.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 17 Jun 2009 01:55:26 +0200
+
+unicap (0.9.4-1) unstable; urgency=low
+
+  * New upstream release (found mentioned in upstream blog).
+    + Update copyright, watch file and get-orig-source target to use
+      blog.
+  * Update debian/copyright:
+    + Bump licensing years of both upstream source and debian packaging
+    + Update syntax to proposal v440 (no changes needed)
+    + Merge entries with same authors and copyrights
+    + Fix references to GAP license.
+    + Add reference to Libtool license.
+  * Update copyright-hints.
+  * Add patch 1006 to fix linking against recent libav{codec,util}.h.
+    Closes: bug#516949, thanks to Kurt Roeckx and Reinhard Tartler.
+  * Bump libavcodec version to suppress by d-shlibs in debian/rules.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 24 Feb 2009 23:15:13 +0100
+
+unicap (0.9.3-3) unstable; urgency=low
+
+  * Fix watch file.
+  * Update CDBS snippets:
+    + Fix use underscore (not dash) in internal variable
+    + Ignore only debian changelog and copyright-related files by
+      default in copyright-check.mk
+    + Correct and update copyright hints of the snippets themselves
+  * Add licensing info to debian/rules.
+  * Update debian/copyright and copyright hints:
+    + Add info on debian files (new owners, no new licenses)
+    + Tighten references to files and licenses
+    + Bump to version 420 of new format
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 28 Dec 2008 15:28:40 +0100
+
+unicap (0.9.3-2) unstable; urgency=low
+
+  * Fix install docs.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 08 Dec 2008 06:34:29 +0100
+
+unicap (0.9.3-1) unstable; urgency=low
+
+  [ Jonas Smedegaard ]
+  * Initial release. Closes: bug#491220.
+  * Add patch 1005 to fix po/POTFILES.in to allow running build tests.
+
+  [ Miriam Ruiz ]
+  * Add patch 1001-1004 fixing various compiler issues.
+  * Provide compile options to avoid unnecessary linking.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 08 Dec 2008 05:44:20 +0100

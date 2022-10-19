@@ -1,0 +1,8 @@
+# See uscan
+# Compulsory line, this is a version 4 file
+version=4
+
+# GitHub hosted projects
+opts="dversionmangle=s/[~+](dfsg|repack)([.0-9a-git]*)?$//,filenamemangle=s%(?:.*?)?libunicap-(\d[\d.]*)\.tar\.gz%unicap-$1.tar.gz%" \
+   https://github.com/unicap/unicap/tags \
+   (?:.*?/)?libunicap-(\d[\d.]*)\.tar\.gz debian uupdate

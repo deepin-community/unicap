@@ -1,0 +1,27 @@
+unicap for Debian
+=================
+
+# obtaining upstream sources
+Traditionally, the Debian "unicap" package contains the "libunicap" component
+of the unicap project.
+Now, upstream no longer provides downloadable files for the various unicap
+components.  Instead, everything was moved into a single big repository on
+GitHub, with the components being subdirectories.
+
+Each component uses different release cycles and versions.
+However, due to the way GitHub works, one cannot download a single component
+from a full repository.
+Additionally, recent releases have not been tagged yet.
+
+For the time being, the upstream source is manually extracted from the
+repository, with something like:
+
+~~~
+git clone https://github.com/unicap/unicap.git
+cd unicap
+SHA=$(git log -1 --pretty=format:%h libunicap)
+DATE=$(git log -1 --pretty=format:%cd --date=format:'%Y%m%d' ${SHA})
+tar cvzf libunicap-0.9.12+repack.git${DATE}.0.${SHA}.tar.gz  libunicap
+~~~
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 03 Oct 2017 11:37:52 +0200

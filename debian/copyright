@@ -1,0 +1,40 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: unicap
+Upstream-Contact: Arne Caspari <arne@unicap-imaging.org>
+Source: http://unicap-imaging.org/download.htm
+
+Files: *
+Copyright: 2004-2009, Arne Caspari <arne@unicap-imaging.org>
+License: GPL-2+
+
+Files: cpi/include/video1394.h
+ cpi/include/video1394_2_4.h
+Copyright: 1999-2000, Sebastien Rougeaux <sebastien.rougeaux@anu.edu.au>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2008-2012, Jonas Smedegaard <dr@jones.dk>
+ 2017, IOhannes m zmölnig <umlaeute@debian.org>
+License: GPL-2+
+
+Files: debian/patches/1001_printf_warning.patch
+ debian/patches/1003_vid21394_pointer.patch
+Copyright: 2008, Miriam Ruiz <little_miry@yahoo.es>
+License: GPL-2+
+
+License: GPL-2+
+ This file is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the 'GNU General Public License'
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Comment:
+ On Debian systems the 'GNU General Public License' version 2 is located
+ in the file '/usr/share/common-licenses/GPL-2'.
