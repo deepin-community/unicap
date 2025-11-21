@@ -1,0 +1,5 @@
+gtk-doc.make
+po/Makefile.in.in
+config.status
+include/unicap_version.h
+m4/
