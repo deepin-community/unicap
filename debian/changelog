@@ -1,3 +1,48 @@
+unicap (0.9.12+repack20150328.0.git2c600ae-6) unstable; urgency=medium
+
+  * Team Upload
+  * Drop dh-buildinfo dummy dependency
+  * Bumped standards version to 4.7.2.
+  * Drop "Rules-Require-Root: no": it is the default now
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 19 Oct 2025 17:01:35 +0200
+
+unicap (0.9.12+repack20150328.0.git2c600ae-5) unstable; urgency=medium
+
+  * Upload to unstable.
+
+  * Add patch to fix FTBFS dues to invalid empty charset declaration
+    (Closes: #1074621)
+  * B-D on pkgconf instead of pkg-config
+  * Use execute_{before,after}_dh_* instead of override_dh_* where applicable
+  * Use d/clean
+  * Update copyright information
+    + Modernize 'licensecheck' target
+    + Re-generate d/copyright_hints
+  * Apply 'wrap-and-sort -ast'
+  * Bump standards version to 4.7.0
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Wed, 17 Jul 2024 21:03:48 +0200
+
+unicap (0.9.12+repack20150328.0.git2c600ae-4exp1) experimental; urgency=medium
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Set libunicap-doc to MultiArch:foreign
+  * Rename libunicap-docs to libunicap-doc
+  * Drop obsolete ${devlibs:Depends}
+  * Drop unnecessary dependency on libgtk2.0-dev (Closes: #967787)
+  * Add Build-Depends to symbols file
+  * Bump standards version to 4.6.0
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit.
+
+  [ Jenkins ]
+  * Apply multi-arch hints. + libunicap2, libunicap2-dev: Add Multi-Arch: same.
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Wed, 25 Aug 2021 13:15:40 +0200
+
 unicap (0.9.12+repack20150328.0.git2c600ae-3) unstable; urgency=medium
 
   [ Ondřej Nový ]

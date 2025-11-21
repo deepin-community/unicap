@@ -3,8 +3,6 @@
 # output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
 
-# Ignore logo and tarball-in-tarball, in addition to default stuff
-DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(doc/api/html/images/logo_unicap\.gif|examples/c/xv_display/xv_display-0\.0\.7\.tar\.gz|debian/(changelog|copyright(|_hints|_newhints)))$
 
 # see FEATURE AREAS in dpkg-buildflags(1)
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -24,12 +22,11 @@ export DEB_LDFLAGS_MAINT_APPEND = \
 %:
 	dh $@
 
-override_dh_autoreconf:
+execute_before_dh_autoreconf:
 	mkdir -p m4
 	gtkdocize
-	dh_autoreconf
+execute_after_dh_autoreconf:
 	intltoolize
-
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
@@ -42,10 +39,16 @@ override_dh_auto_configure:
 override_dh_makeshlibs:
 	dh_makeshlibs -X /unicap2/cpi/
 
-override_dh_auto_clean:
-	dh_auto_clean
-	rm -f gtk-doc.make
-	rm -f po/Makefile.in.in
-	rm -f config.log config.status
-	rm -f include/unicap_version.h
-	rm -rf m4
+
+# Ignore logo and tarball-in-tarball, in addition to default stuff
+DEB_COPYRIGHT_CHECK_IGNORE_REGEX = \
+	doc/api/html/images/logo_unicap\.gif|examples/c/xv_display/xv_display-0\.0\.7\.tar\.gz|debian/.*
+# licensecheck v1
+.PHONY: licensecheck
+licensecheck:
+	LANG=C.UTF-8 licensecheck \
+		-i "^($(DEB_COPYRIGHT_CHECK_IGNORE_REGEX))$$" \
+		--check '.*' --recursive --deb-machine --lines 0 * \
+		> debian/copyright_newhints
+	cmp debian/copyright_hints debian/copyright_newhints \
+		&& rm debian/copyright_newhints

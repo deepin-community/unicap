@@ -1,4 +1,5 @@
 libunicap.so.2 libunicap2 #MINVER#
+* Build-Depends-Package: libunicap2-dev
  unicap_cache_add@Base 0.9.12~
  unicap_cache_get@Base 0.9.12~
  unicap_cache_init@Base 0.9.12~
